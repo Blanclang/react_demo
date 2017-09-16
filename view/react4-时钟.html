@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>react4-时钟</title>
+        <meta charset="utf-8">
+        <!-- <script src="../js/jquery.min.js"></script> -->
+        <script src="../js/react.js"></script>
+        <script src="../js/react-dom.min.js"></script>
+        <script src="../js/babel.js"></script>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        
+        <div id="app"></div>
+        
+        <script type="text/babel">
+            class Clock extends React.Component{
+                constructor() {
+                    super();
+                    this.state = {
+                        time:new Date(Date.now()).toLocaleString().replace(/\//g, "-").replace(/上午/g, " ")
+                    };
+                    this.timer=null;
+                }
+                componentDidMount() {
+                    this.change(); //等组件挂在完调用
+                }
+                componentWillUnmount() { //组件卸载
+                    clearInterval(this.timer);//关闭文件后组件也关了 但要销毁定时器
+                }
+                change(){
+                    this.timer= setInterval(function(){
+                                    this.setState({
+                                        time:new Date(Date.now()).toLocaleString().replace(/\//g, "-").replace(/上午/g, " ")
+                                    })
+                                }.bind(this),1000)
+                }
+                render(){
+                    return(
+                        <div>
+                            <h3>{this.state.time}</h3>
+                        </div>
+                    )
+                }
+            }
+
+            ReactDOM.render(
+                <Clock/>,
+                document.querySelector('#app')
+            );
+        </script>
+        
+    </body>
+</html>

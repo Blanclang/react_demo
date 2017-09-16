@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>课外延伸_this绑定</title>
+        <meta charset="utf-8">
+        <script src="../js/jquery.min.js"></script>
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+        
+        <div>123132</div>
+        
+        <script type="text/javascript">
+            //默认绑定
+            // function foo(){
+            //     console.log(this.a);
+            // }
+            // var a = 100;
+            // foo();
+
+            // //隐式绑定
+            // function foo2(){
+            //     console.log(this.a);
+            // }
+            // var obj1={
+            //     a:1,
+            //     foo2
+            // }
+            // var obj2={
+            //     a:2,
+            //     foo2
+            // }
+            // obj1.foo2();
+            // obj2.foo2();
+
+            //显式绑定
+            function foo3(b){
+                var a = 8;
+                console.log(this.a);
+                bar.call({a:2},b);
+                // bar.apply({a:2},[b]);
+                // bar.apply({a:2},arguments);
+            }
+            function bar(b){     
+                console.log(this.a+b);
+            }
+            var a = 1;
+            foo3(3);
+
+
+            
+        </script>
+        
+    </body>
+</html>

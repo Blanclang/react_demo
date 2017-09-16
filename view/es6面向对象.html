@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>es6面向对象</title>
+        <meta charset="utf-8">
+        <style type="text/css">
+            .img{border:1px solid red;}
+        </style>
+    </head>
+    <body>
+        
+        
+        <script type="text/javascript">
+            class Person{
+                constructor(name) {
+                    this.name = name;
+                }
+                showName(){
+                    return this.name;
+                }
+            }
+
+            //继承
+            class Worker extends Person{
+                constructor(name,job) {
+                  super(name);
+                  this.job = job;
+                }
+                showJob(){
+                    return this.job;
+                }
+            }
+
+            var p1 = new Person('abc');
+            var w1 = new Worker('ccc','搬砖');
+            alert(w1.showName());
+        </script>
+        
+    </body>
+</html>

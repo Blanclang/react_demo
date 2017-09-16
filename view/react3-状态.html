@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>react3-状态</title>
+        <meta charset="utf-8">
+        <!-- <script src="../js/jquery.min.js"></script> -->
+        <script src="../js/react.js"></script>
+        <script src="../js/react-dom.min.js"></script>
+        <script src="../js/babel.js"></script>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        
+        <div id="app"></div>
+        
+        <script type="text/babel">
+
+            class Hello extends React.Component{
+                constructor() {
+                    super();//继承父级
+                 
+                    this.state = {
+                        msg:'啦啦啦'
+                    };
+                } 
+                show(){
+                    // this.state.msg='abc';
+                    // alert(this.state.msg);
+                    this.setState({ //react提供改变状态的方法
+                        msg:'abc'
+                    });
+                }
+                render(){
+                    return(
+                        <div>
+                            <h3 onClick={this.show.bind(this)}>侬好啊</h3>
+                            <p>{this.state.msg}</p>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(
+                <Hello/>, 
+                document.querySelector('#app')
+            )
+        </script>
+        
+    </body>
+</html>

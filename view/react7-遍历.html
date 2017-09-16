@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>react7-遍历</title>
+        <meta charset="utf-8">
+        <!-- <script src="../js/jquery.min.js"></script> -->
+        <script src="../js/react.js"></script>
+        <script src="../js/react-dom.min.js"></script>
+        <script src="../js/babel.js"></script>
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+        
+        <div id="app"></div>
+        
+        <script type="text/babel">
+            class List extends React.Component{
+                constructor() {
+                    super();
+                    this.state = {
+                        msg:['111','222','333','444']
+                    };
+                }
+
+                render(){
+                    let arrLi = [];
+                    this.state.msg.forEach((val,index)=>{
+                        arrLi.push(<li key={index}>{val}</li>)
+                    })
+
+                    return(
+                        <div>
+                        <div style={{display:this.state.msg.length>0 ? 'none' : 'block'}}>暂无数据...</div>
+                            <ul>
+                                {arrLi}
+                            </ul>
+                        </div>
+                        
+                    )
+                }
+
+            }
+
+            ReactDOM.render(
+                <List/>,
+                document.querySelector('#app')
+            )
+
+        </script>
+        
+    </body>
+</html>

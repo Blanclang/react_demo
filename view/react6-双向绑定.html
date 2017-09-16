@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>react6-双向绑定</title>
+        <meta charset="utf-8">
+        <!-- <script src="../js/jquery.min.js"></script> -->
+        <script src="../js/react.js"></script>
+        <script src="../js/react-dom.min.js"></script>
+        <script src="../js/babel.js"></script>
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+        
+        <div id="app"></div>
+        
+        <script type="text/babel">
+            class DataBind extends React.Component{
+                constructor() {
+                    super();
+                
+                    this.state = {
+                        val:''
+                    };
+                }
+                inputChange(e){
+                    var input = document.querySelector('#inputId');
+                    var iId = this.refs.ip
+                    console.log(iId.value);
+                    this.setState({
+                        val:e.target.value
+                    })
+                }
+                render(){
+                    return(
+                        <div>
+                            <input id="inputId" ref="ip" type="text" onChange={this.inputChange.bind(this)} />
+                            <span>{this.state.val}</span>
+                        </div>
+                    )
+                }
+
+            }     
+            ReactDOM.render(
+                <DataBind/>,
+                document.querySelector('#app')
+            )
+
+
+
+        </script>
+        
+    </body>
+</html>

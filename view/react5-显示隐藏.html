@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>react5-显示隐藏</title>
+        <meta charset="utf-8">
+        <!-- <script src="../js/jquery.min.js"></script> -->
+        <script src="../js/react.js"></script>
+        <script src="../js/react-dom.min.js"></script>
+        <script src="../js/babel.js"></script>
+        <style type="text/css">
+            .box{width: 150px;height: 150px;background:red;margin-top: 10px;}
+        </style>
+    </head>
+    <body>
+        
+        <div id="app"></div>
+        
+        <script type="text/babel">
+            class ShowHide extends React.Component{
+                constructor(){
+                    super()
+                
+                    this.state = {
+                        bShow:false,
+                        sh:'none'
+                    };
+                }
+                changeStatus(){
+                    this.setState({
+                        bShow:!this.state.bShow
+                    })
+                }
+                render(){
+                    let show_hide = this.state.bShow ? 'block' : 'none';
+                    return(
+                        <div>
+                            <button onClick = {this.changeStatus.bind(this)}>显示隐藏</button>
+                            <div className ="box" style={{display:show_hide}}></div>
+                        </div>
+                    )
+                }                
+            }
+            ReactDOM.render(
+                <ShowHide/>,
+                document.querySelector('#app')
+            )
+        </script>
+        
+    </body>
+</html>

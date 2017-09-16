@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>react10-父子组件通信</title>
+        <meta charset="utf-8">
+        <!-- <script src="../js/jquery.min.js"></script> -->
+        <script src="../js/react.js"></script>
+        <script src="../js/react-dom.min.js"></script>
+        <script src="../js/babel.js"></script>
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+        
+        <div id="app"></div>
+        
+        <script type="text/babel">
+
+            class Child extends React.Component{
+                render(){
+                    return(
+                        <div>
+                            <p>子级数据 -->{this.props.info}</p>
+                        </div>
+                    )
+                }
+            }
+
+            class Parent extends React.Component{
+                constructor() {
+                    super();
+                
+                    this.state = {
+                        msg:'我是父级数据'
+                    };
+                }
+                handleClick(){
+                    this.setState({
+                        msg:'im parents'
+                    })
+                }
+                render(){
+                    return(
+                        <div>
+                            <Child info={this.state.msg} />
+                            <p onClick={this.handleClick.bind(this)}>父级数据 -->{this.state.msg}</p>
+                        </div>
+                    )
+                }
+            }
+
+            ReactDOM.render(
+                <Parent/>,
+                document.querySelector('#app')
+            )
+
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>react10_1-子~父组件通信</title>
+        <meta charset="utf-8">
+        <!-- <script src="../js/jquery.min.js"></script> -->
+        <script src="../js/react.js"></script>
+        <script src="../js/react-dom.min.js"></script>
+        <script src="../js/babel.js"></script>
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+        
+        <div id="app"></div>
+        
+        <script type="text/babel">
+            class Child extends React.Component{
+                constructor() {
+                    super();
+                    this.state = {
+                        msg:'我是子级数据'
+                    };
+                }
+                componentDidMount(){
+                    this.props.info(this.state.msg)
+                }
+                handleClick(){
+                    var str = this.state.msg.split('').reverse().join('');
+                    this.props.info(str)
+                    this.setState({
+                        msg:str
+                    })
+                }
+                render(){
+                    return(
+                        <div>
+                            <p onClick={this.handleClick.bind(this)}>子级数据 --> {this.state.msg}</p>
+                        </div>
+                    )
+                }
+            }
+
+            class Parent extends React.Component{
+                constructor() {
+                    super();
+                    this.state = {
+                        parentMsg:''
+                    };
+                }
+                handle(a){
+                    this.setState({
+                        parentMsg:a
+                    })
+                }
+                render(){
+                    return(
+                        <div>
+                            <Child info={this.handle.bind(this)}/>
+                            <p>父级数据 -->{this.state.parentMsg || 'no data'}</p>
+                        </div>
+                    )
+                }
+            }
+
+            ReactDOM.render(
+                <Parent/>,
+                document.querySelector('#app')
+            )
+
+        </script>
+        
+    </body>
+</html>

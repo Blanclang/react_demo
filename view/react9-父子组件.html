@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>react9-父子组件</title>
+        <meta charset="utf-8">
+        <!-- <script src="../js/jquery.min.js"></script> -->
+        <script src="../js/react.js"></script>
+        <script src="../js/react-dom.min.js"></script>
+        <script src="../js/babel.js"></script>
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+        
+        <div id="app"></div>
+        
+        <script type="text/babel">
+            class LogoIcon extends React.Component{
+                render(){
+                    let logoSty= {width:'60px',height:'40px',border:'2px solid red'}
+                    return(
+                        <img style={logoSty} src='../img/logo.png' />
+                    )
+                }
+            }
+            class Child extends React.Component{
+                render(){
+                    return(
+                        <div>
+                            
+                            <p style={{background:this.props.bgColor,textAlign:'center'}}>
+                                <LogoIcon/>
+                                <span>{this.props.atrr}</span>
+                            </p>
+                        </div>
+                    )
+                }
+            }
+
+            class InfoList extends React.Component{
+                constructor() {
+                    super();
+                
+                    this.state = {
+                        infoArr:['123','3333','445','456']
+                    };
+                }
+                render(){
+                    let arr = [];
+                    this.state.infoArr.forEach((item,index)=>{
+                        arr.push(<li key={index}>{item}</li>)
+                    })
+                    return(
+                        <ul>
+                            {arr}
+                        </ul>
+                    )
+                }
+            }
+            class Parent extends React.Component{
+                constructor() {
+                    super();
+                
+                    this.state = {
+                        msg:'头部'
+                    };
+                }
+                render(){
+                    return(
+                        <div>
+                            <Child atrr={this.state.msg} bgColor="blue"/>
+                            <InfoList/>
+
+                            <h3>啦啦啦</h3>
+                        </div>
+                    )
+                }
+            }
+
+            ReactDOM.render(
+                <Parent/>, 
+                document.querySelector('#app')
+            )
+
+        </script>
+        
+    </body>
+</html>

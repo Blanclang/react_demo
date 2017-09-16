@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>课外延伸_this</title>
+        <meta charset="utf-8">
+        <script src="../js/jquery.min.js"></script>
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+        
+        <div>123132</div>
+        
+        <script type="text/javascript">
+           
+            function foo(){
+                console.log(a);
+            }
+
+            function bar(){
+                let a = 3;
+                foo();
+                // console.log(a);
+            }
+
+            let a = 2;
+            bar();
+            
+        </script>
+        
+    </body>
+</html>
